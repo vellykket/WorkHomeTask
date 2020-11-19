@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HomeTask.Models.ProductsInStock>
+
+@{
+    ViewData["Title"] = "Products in stock";
+}
+
+<h1>Products in stock</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Storage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Count)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Storage.StorageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  productId=item.ProductId, storageId = item.StorageId }) |
+                @Html.ActionLink("Details", "Details", new { productId=item.ProductId, storageId = item.StorageId }) |
+                @Html.ActionLink("Delete", "Delete", new { productId=item.ProductId, storageId = item.StorageId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
